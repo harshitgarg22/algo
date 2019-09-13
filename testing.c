@@ -1,27 +1,53 @@
-#include "./merge_sort.h"
-#include "./array_input.h"
+/* #include "./merge_sort.h" */
+/* #include "./array_input.h" */
 // #include "./strassan_matrix.h"
 #include<stdio.h>
 #include<stdlib.h>
+#include "./karatsuba_multiply.h"
+
+/* #define MAX_DIGIT 64 */
 
 int main(){
+  long double x, y;
 
-    int size;
+  printf("Enter the two numbers: ");
+  scanf("%llf", &x);
+  scanf("%llf", &y);
 
-    size = 8;
+  printf("%llf\n", karatsuba_multiply(x,y));
 
-    int *arr = malloc(sizeof(int)*size);
-    array_input(arr, size);
-
-    mergeSort(arr, size);
-
-    for(int i=0; i<size; i++){
-        printf("%d ", arr[i]);
-    }
-
-    putchar('\n');
 
 }
+/*   char *x = malloc(sizeof(char)*(MAX_DIGIT+1)); */
+/*   char *y = malloc(sizeof(char)*(MAX_DIGIT+1)); */
+
+/*   printf("Enter the two numbers: "); */
+/*   scanf("%s", x); */
+/*   scanf("%s", y); */
+
+/*   printf("%s", karatsuba_multiply_big(x,y)); */
+
+// Code for multiplication for small numbers
+
+
+/* // Code for mergeSort */
+
+/*     int size; */
+
+/*     size = 8; */
+
+/*     int *arr = malloc(sizeof(int)*size); */
+/*     array_input(arr, size); */
+
+/*     mergeSort(arr, size); */
+
+/*     for(int i=0; i<size; i++){ */
+/*         printf("%d ", arr[i]); */
+/*     } */
+
+/*     putchar('\n'); */
+
+/* } */
 
 //  Code for strassan_matrix.c
 
