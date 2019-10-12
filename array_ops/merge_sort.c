@@ -1,10 +1,9 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include "./array_input.h"
 
 int mergeSort(int *, int);
-int sort(int *, int);
-int merge(int *, int, int *, int);
+long unsigned int sort(int *, int);
+long unsigned int merge(int *, int, int *, int);
 
 
 int mergeSort(int *arr, int size){
@@ -19,49 +18,49 @@ int mergeSort(int *arr, int size){
         return 0;
     }
 
-    int count = 0;
+    long unsigned int count = 0;
 
     count += sort(arr, size/2);
     count += sort(arr + size/2, size-size/2);
     count += merge(arr, size/2, arr+size/2, size-size/2);  // Count of inversions is outputted by merge() itself
 
-    printf("\nCOUNT = %d\n", count);
+    printf("\nCOUNT = %lu\n", count);
 
     return 0;
 }
 
-int sort(int *arr, int size){
+long unsigned int sort(int *arr, int size){
 
-    int count = 0;  //  Count of inversions by this iteration of merge()
+    long unsigned int count = 0;  //  Count of inversions by this iteration of merge()
 
     if(size!=1){
         count += sort(arr, size/2);
         count += sort(arr + size/2, size-size/2);
     }
 
-    count += merge(arr, size/2, arr+size/2, size-size/2);  
+    count += merge(arr, size/2, arr+size/2, size-size/2);
 
     return count;
 }
 
-int merge(int left[], int l, int right[], int r){
+unsigned long int merge(int left[], int l, int right[], int r){
     int *temp = malloc(sizeof(int)*(l+r));
 
-    int count=0; // Maintains the count of inversions
+    unsigned long int count=0; // Maintains the count of inversions
 
-    int i=0, j=0, k=0;
+    unsigned long int i=0, j=0, k=0;
 
     while(j<l&&k<r){
 
         if(left[j]<right[k]){
             temp[i++] = left[j++];
         }
-        
+
         else {
             temp[i++] = right[k++];
             count+=l-j;  // If an element from right array is being taken, that means it has the smaller number, which is a "problem" in the sense that it must be counted as inversion.
         }
-        
+
     }
 
     if(j<l){
