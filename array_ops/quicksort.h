@@ -5,6 +5,6 @@
 
 
 
-void quicksort(std::vector<int>&);
+void quicksort(std::vector<int>&, int method=2);
 
 #endif

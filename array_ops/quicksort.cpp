@@ -1,14 +1,12 @@
-#include<cstdlib>
-#include<ctime>
 #include<vector>
-#include<iostream>
+#include "./choosePivot.h"
 
 using namespace std;
 
-void quicksort(vector<int>&);
-void partition(vector<int>&);
+void quicksort(vector<int>&, int method = 2);
+void partition(vector<int>&, int method);
 
-void quicksort(vector<int> &arr){
+void quicksort(vector<int> &arr, int method){
 
   // if arr.size() == 1, it's a trivial case. already sorted.
   // if arr.size() == 0, it's empty. Therefore, we need not do anything from our side.
@@ -17,33 +15,31 @@ void quicksort(vector<int> &arr){
   }
 
   else{
-    partition(arr);
+    partition(arr, method);
   }
 
 }
 
-void partition(vector<int> &arr){
-  srand((unsigned)time(0));
+void partition(vector<int> &arr, int method){
 
-  int flag=0;
-  flag = (int)(((int)rand())%arr.size());
+  unsigned long int pivot = choosePivot(arr.size(), method);
 
   int temp;
-  temp = arr.at(flag);
+  temp = arr.at(pivot);
 
   vector<int> a, b;
 
-  for(int i=0; i<(int)arr.size(); i++){
-    if(arr.at(i)<arr.at(flag)){
+  for(unsigned long int i=0; i<arr.size(); i++){
+    if(arr.at(i)<arr.at(pivot)){
       a.push_back(arr.at(i));
     }
-    else if((arr.at(i)==arr.at(flag))&&i!=flag){
+    else if((arr.at(i)==arr.at(pivot))&&i!=pivot){
       a.push_back(arr.at(i));
     }
   }
 
-  for(int i=0; i<(int)arr.size(); i++){
-    if(arr.at(i)>arr.at(flag)){
+  for(unsigned long int i=0; i<arr.size(); i++){
+    if(arr.at(i)>arr.at(pivot)){
       b.push_back(arr.at(i));
     }
   }
@@ -53,13 +49,13 @@ void partition(vector<int> &arr){
 
   arr.clear();
 
-  for(int i=0; i<(int)a.size(); i++){
+  for(unsigned long int i=0; i<a.size(); i++){
     arr.push_back(a[i]);
   }
 
   arr.push_back(temp);
 
-  for(int i=0; i<(int)b.size(); i++){
+  for(unsigned long int i=0; i<b.size(); i++){
     arr.push_back(b[i]);
   }
 
