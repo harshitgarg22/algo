@@ -3,8 +3,6 @@
 
 #include<vector>
 
-
-
-void quicksort(std::vector<int>&, int method=2);
+unsigned long int quicksort(std::vector<int>&, int method=3);
 
 #endif

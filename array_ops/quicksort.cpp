@@ -3,26 +3,29 @@
 
 using namespace std;
 
-void quicksort(vector<int>&, int method = 2);
-void partition(vector<int>&, int method);
+unsigned long int quicksort(vector<int>&, int method=3);
+unsigned long int partition(vector<int>&, int method);
 
-void quicksort(vector<int> &arr, int method){
+unsigned long int quicksort(vector<int> &arr, int method){
 
+  unsigned long int count = 0;
   // if arr.size() == 1, it's a trivial case. already sorted.
   // if arr.size() == 0, it's empty. Therefore, we need not do anything from our side.
   if(arr.size()<=1){
-    return;
+    return count;
   }
 
   else{
-    partition(arr, method);
+    count += partition(arr, method);
   }
 
+  return count;
 }
 
-void partition(vector<int> &arr, int method){
+unsigned long int partition(vector<int> &arr, int method){
 
-  unsigned long int pivot = choosePivot(arr.size(), method);
+  unsigned long int pivot = choosePivot(arr, method);
+  unsigned long int count = 0;
 
   int temp;
   temp = arr.at(pivot);
@@ -44,8 +47,8 @@ void partition(vector<int> &arr, int method){
     }
   }
 
-  quicksort(a);
-  quicksort(b);
+  count += quicksort(a, method);
+  count += quicksort(b, method);
 
   arr.clear();
 
@@ -59,5 +62,7 @@ void partition(vector<int> &arr, int method){
     arr.push_back(b[i]);
   }
 
-  return;
+  count += a.size() + b.size();
+
+  return count;
 }
