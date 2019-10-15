@@ -3,6 +3,6 @@
 
 #include<vector>
 
-unsigned long int choosePivot(std::vector<int>, int method = 2);
+unsigned long int choosePivot(std::vector<int>, int method = 3);
 
 #endif

@@ -13,7 +13,7 @@
 
 using namespace std;
 
-unsigned long int choosePivot(vector<int> arr, int method){
+unsigned long int choosePivot(vector<int> arr, int method=3){
 
   if(method==1){
     return 0;
